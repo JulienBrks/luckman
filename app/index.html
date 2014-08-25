@@ -1,0 +1,139 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Generic page styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- blueimp Gallery styles -->
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href="styles/jquery.fileupload.css">
+    <link rel="stylesheet" href="styles/jquery.fileupload-ui.css">
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript><link rel="stylesheet" href="styles/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="styles/jquery.fileupload-ui-noscript.css"></noscript>
+    <!-- endbuild -->
+    <style>
+    /* Hide Angular JS elements before initializing */
+    .ng-cloak {
+        display: none;
+    }
+    </style>
+  </head>
+  <body ng-app="luckyManApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a ng-href="#">Home</a></li>
+          <li><a ng-href="#/about">About</a></li>
+          <li><a ng-href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">luckyMan</h3>
+      </div>
+
+      <div ng-view=""></div>
+
+      <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/index.js"></script>
+        <script src="scripts/directives/imgscroll.js"></script>
+
+
+        <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+        <script src="/scripts/vendor/jquery.ui.widget.js"></script>
+        <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+        <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+        <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+        <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+        <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <!-- blueimp Gallery script -->
+        <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+        <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+        <script src="scripts/vendor/jquery.iframe-transport.js"></script>
+        <!-- The basic File Upload plugin -->
+        <script src="scripts/vendor/jquery.fileupload.js"></script>
+        <!-- The File Upload processing plugin -->
+        <script src="scripts/vendor/jquery.fileupload-process.js"></script>
+        <!-- The File Upload image preview & resize plugin -->
+        <script src="scripts/vendor/jquery.fileupload-image.js"></script>
+        <!-- The File Upload audio preview plugin -->
+        <script src="scripts/vendor/jquery.fileupload-audio.js"></script>
+        <!-- The File Upload video preview plugin -->
+        <script src="scripts/vendor/jquery.fileupload-video.js"></script>
+        <!-- The File Upload validation plugin -->
+        <script src="scripts/vendor/jquery.fileupload-validate.js"></script>
+        <!-- The File Upload Angular JS module -->
+        <script src="scripts/vendor/jquery.fileupload-angular.js"></script>
+        <!-- The main application script -->
+        <script src="scripts/vendor/app.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
