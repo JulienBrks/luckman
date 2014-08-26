@@ -102,3 +102,28 @@ body {
   font: 20pt bold 'Vollkorn';
   color: #bbb;
 }
+
+
+
+/* index.html */
+.index {
+  .files {
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    ul {
+      width: 600px;
+      position: absolute;
+      left: 0;
+      li {
+        list-style: none;
+        display: inline-block;
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }
+}

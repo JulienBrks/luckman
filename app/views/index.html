@@ -1,6 +1,6 @@
-<p class="text-center"><a class="btn btn-lg btn-success" ng-href="#">开始<span class="glyphicon glyphicon-play"></span></a></p>
 <!-- The file upload form used as target for the file upload widget -->
-<form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+<form id="fileupload" class="index" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+    <p class="text-center"><a class="btn btn-lg btn-success" ng-href="#" ng-click="startScroll()">开始<span class="glyphicon glyphicon-play"></span></a></p>
     <!-- Redirect browsers with JavaScript disabled to the origin page -->
     <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -10,7 +10,7 @@
             <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                 <i class="glyphicon glyphicon-plus"></i>
                 <span>Add files...</span>
-                <input type="file" name="files[]" multiple ng-disabled="disabled">
+                <input id="file" type="file" name="files[]" multiple ng-disabled="disabled" onchange="startCarousel()">
             </span>
             <button type="button" class="btn btn-primary start" data-ng-click="submit()">
                 <i class="glyphicon glyphicon-upload"></i>
@@ -31,8 +31,44 @@
             <div class="progress-extended">&nbsp;</div>
         </div>
     </div>
+    <div class="files">
+        <ul class="ng-cloak">
+            <li data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
+                <div data-ng-switch data-on="!!file.thumbnailUrl">
+                    <div class="preview" data-ng-switch-when="true">
+                        <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
+                    </div>
+                    <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="links">
+        <a data-ng-repeat="file in queue" data-ng-href="{{file.url}}" title="{{file.name}}">
+            <img ng-src="{{file.thumbnailUrl}}" alt="">
+        </a>
+    </div>
+    <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+    <script>
+    function startCarousel() {
+        blueimp.Gallery(
+            document.getElementById('links').getElementsByTagName('a'),
+            {
+                container: '#blueimp-gallery-carousel',
+                carousel: true
+            }
+        );        
+    }
+    </script>
     <!-- The table listing the files available for upload/download -->
-    <table class="table table-striped files ng-cloak">
+<!--     <table class="table table-striped files ng-cloak">
         <tr data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
             <td data-ng-switch data-on="!!file.thumbnailUrl">
                 <div class="preview" data-ng-switch-when="true">
@@ -69,5 +105,6 @@
                 </button>
             </td>
         </tr>
-    </table>
+    </table> -->
+
 </form>
