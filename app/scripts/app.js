@@ -18,6 +18,11 @@ angular
     'ngTouch'
 
   ])
+  .run(function ($rootScope, $location) {
+    $rootScope.path = function () {
+      return $location.path();
+    }
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -27,10 +32,6 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
-      })
-      .when('/index', {
-        templateUrl: 'views/index.html',
-        controller: 'IndexCtrl'
       })
       .otherwise({
         redirectTo: '/'
