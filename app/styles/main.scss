@@ -70,9 +70,6 @@ body {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
 
   /* Remove the padding we set earlier */
   .header,
@@ -125,5 +122,28 @@ body {
         }
       }
     }
+  }
+}
+
+/* main.html */
+.j-fileinput-button {
+  position: relative;
+  overflow: hidden;
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+    direction: ltr;
+    cursor: pointer;
+  }
+}
+#links {
+  img {
+    width: 50px;
+    height: 50px;
   }
 }
