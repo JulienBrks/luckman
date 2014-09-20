@@ -37,6 +37,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li ng-class="{active: path() === '/'}"><a ng-href="#">幸运儿</a></li>
+          <li ng-class="{active: path() === '/settings'}"><a href="#/settings">设置</a></li>
           <li ng-class="{active: path() === '/about'}"><a ng-href="#/about">关于</a></li>
         </ul>
         <h3 class="text-muted">幸运儿</h3>
@@ -130,6 +131,7 @@
         <!-- The main application script -->
         <script src="scripts/vendor/app.js"></script>
         <script src="scripts/directives/uploadfile.js"></script>
+        <script src="scripts/controllers/settings.js"></script>
         <!-- endbuild -->
 </body>
 </html>
