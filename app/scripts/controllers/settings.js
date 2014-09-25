@@ -8,10 +8,8 @@
  * Controller of the luckyManApp
  */
 angular.module('luckyManApp')
-  .controller('SettingsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('SettingsCtrl', function ($rootScope, $scope) {
+    $scope.changeBackgroundImage = function() {
+      
+    }
   });
