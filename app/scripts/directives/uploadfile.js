@@ -31,43 +31,59 @@ angular.module('luckyManApp')
                  </div>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
+
+        /**
+         * 等待一个promise数组里面的所有promise执行后, 返回一个promise
+         *
+         * @param {array} array - promise组成的数组
+         * @return {array} 返回这个数组内的所有的promise执行后的结果
+         */
+        scope.deferArray = function(array){
+          var deferred = $.Deferred();
+          var fulfilled = 0, length = array.length;
+          var results = [];
+
+          if (length === 0) {
+              deferred.resolve(results);
+          } else {
+              array.forEach(function(promise, i){
+                  $.when(promise()).then(function(value) {
+                      results[i] = value;
+                      fulfilled++;
+                      if(fulfilled === length){
+                          deferred.resolve(results);
+                      }
+                  });
+              });
+          }
+          return deferred.promise();
+        };
+
         scope.imagesLoaded = false;
+
         element.find('#files').change(function(){
           var that = this;
           var loadImagePromises = [];
-          var all = function(array){
-              var deferred = $.Deferred();
-              var fulfilled = 0, length = array.length;
-              var results = [];
+          var all = scope.deferArray;
 
-              if (length === 0) {
-                  deferred.resolve(results);
-              } else {
-                  array.forEach(function(promise, i){
-                      $.when(promise()).then(function(value) {
-                          results[i] = value;
-                          fulfilled++;
-                          if(fulfilled === length){
-                              deferred.resolve(results);
-                          }
-                      });
-                  });
-              }
-
-              return deferred.promise();
-          };
+          // 读取所有的文件, 创建一个loadImagePromises的数组用来存储所有的异步文件读取
           $.each(that.files, function(key, file) {
             loadImagePromises.push(function() {
               return $.Deferred(function(dfd) {
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL(file);
                 fileReader.onload = function() {
-                  this.result.name = file.name;
-                  dfd.resolve(this.result);
+                  var result = {
+                    file: this.result,
+                    name: file.name
+                  }
+                  dfd.resolve(result);
                 }
               }).promise();
             });
           });
+
+          // 执行所有异步文件读取, 然后创建图片链接的数组放到carouseLinksPromises中
           $.when(all(loadImagePromises)).then(function(results) {
 
             var carouselLinks = [],
@@ -79,13 +95,13 @@ angular.module('luckyManApp')
                     return $.Deferred(function(dfd) {
 
                       $('<a/>')
-                          .append($('<img>').prop('src', result))
-                          .prop('href', result)
+                          .append($('<img>').prop('src', result.file))
+                          .prop('href', result.file)
                           .prop('title', result.name)
                           .attr('data-gallery', '')
                           .appendTo(linksContainer);
                       var carouselLink = {
-                          href: result,
+                          href: result.file,
                           title: result.name
                       };
                       carouselLinks.push(carouselLink);
@@ -96,6 +112,7 @@ angular.module('luckyManApp')
 
             });
 
+            // 使用blueimp创建自动滚动的图片gallery
             $.when(all(carouselLinksPromises)).then(function() {
               $('.scroll-opt').removeClass('hide');
               // Initialize the Gallery as image carousel:
@@ -114,7 +131,6 @@ angular.module('luckyManApp')
             }
             scope.pauseScroll = function() {
               scope.gallery.pause();
-              // console.log(gallery.getIndex());
             }
           });
         });
